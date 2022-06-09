@@ -19,16 +19,6 @@ std::ifstream file(filename);
 std::string word = "";
 if (file.is_open()) {
 while (!file.eof()) {
-word = "";
-while (true) {
-char letter = file.get();
-if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90)) {
-word += tolower(letter);
-} else {
-break;
-}
-}
-while (!file.eof()) {
 char let = file.get();
 if ((let >= 'a' && let <= 'z') || (let >= 'A' && let <= 'Z')) {
 word += let;
