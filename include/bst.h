@@ -2,64 +2,65 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-template <typename T>
+template<typename T>
 class BST {
  private:
 struct Node {
-T value;
-int count = 0;
-Node* left = nullptr;
-Node* right = nullptr;
+T val;
+Node *rght;
+Node *lft;
+int ct;
 };
-Node* root;
-Node* addNode(Node* root, const T& val) {
+Node *root;
+Node *addNode(Node *root, T x) {
 if (root == nullptr) {
 root = new Node;
-root->value = val;
-root->count = 1;
-root->left = root->right = nullptr;
-} else if (val > root->value) {
-root->left = addNode(root->left, val);
-} else if (val < root->value) {
-root->right = addNode(root->right, val);
+root->val = x;
+root->lft = nullptr;
+root->rght = nullptr;
 } else {
-root->count++;
+if (root->val > x) root->lft = addNode(root->lft, x);
+if (root->val < x) root->rght = addNode(root->rght, x);
+if (root->val == x) (root->ct)++;
 }
 return root;
 }
-int searchNode(Node* root, const T& val) {
-return searchNode(root->right, val);
+int searchValue(Node* root, T x) {
+if (root == nullptr) {
+return 0;
+} else if (root->val == x) {
+return root->ct;
+} else if (root->val < x) {
+return searchValue(root->rght, x);
 } else {
-return searchNode(root->left, val);
+return searchValue(root->lft, x);
 }
 }
-int heightTree(Node* root) {
-int sleva;
-int sprava;
+int height(Node* root) {
 if (root == nullptr) {
 return 0;
 }
-if (root->left == nullptr && root->right == nullptr) {
+if (root->lft == nullptr && root->rght == nullptr) {
 return 0;
 }
-sleva = heightTree(root->left);
-sprava = heightTree(root->right);
-if (sleva > sprava) {
-return sleva + 1;
+int rrt = height(root->rght), llt = height(root->lft);
+if (rrt > llt) {
+return rrt + 1;
 } else {
-return sprava + 1;
+return llt + 1;
 }
 }
+
  public:
-BST() : root(nullptr) {}
-void add(const T& val) {
-root = addNode(root, val);
-}
-int search(const T& val) {
-return searchNode(root, val);
+BST():root(nullptr) {}
+void add(T x) {
+root = addNode(root, x);
 }
 int depth() {
-return heightTree(root);
+return height(root);
+}
+int search(T x) {
+return searchValue(root, x) + 1;
 }
 };
 #endif  // INCLUDE_BST_H_
