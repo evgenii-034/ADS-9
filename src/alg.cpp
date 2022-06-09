@@ -3,6 +3,7 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <string>
 #include  "bst.h"
 
 std::string low(std::string str) {
