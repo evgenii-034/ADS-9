@@ -4,12 +4,15 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
+#include <string>
+
+using namespace std;
 
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
-std::ifstream file(filename);
-BST<std::string> tree;
-std::word = "";
+ifstream file(filename);
+BST<string> tree;
+string word = "";
 int count = 0;
 // читаем содержимое файла посимвольно
 while (!file.eof()) {
