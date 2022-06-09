@@ -3,12 +3,13 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
-#include  "bst.h"
 #include <string>
+#include  "bst.h"
+
 
 using namespace std;
 
-BST<std::string> makeTree(const char* filename) {
+BST<string> makeTree(const char* filename) {
   // поместите сюда свой код
 ifstream file(filename);
 BST<string> tree;
