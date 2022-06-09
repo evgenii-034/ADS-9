@@ -3,7 +3,7 @@
 #define INCLUDE_BST_H_
 
 template <typename T>
-class BST {         
+class BST {
  private:
   struct Node {
     T value;
@@ -32,7 +32,7 @@ class BST {
     } else {
       return searchNode(root->left, val);
     }
-  }
+}
   int heightTree(Node* root) {
     int sleva;
     int sprava;
@@ -50,8 +50,6 @@ class BST {
       return sprava + 1;
     }
   }
-
-        
  public:
   BST() : root(nullptr) {}
   void add(const T& val) {
