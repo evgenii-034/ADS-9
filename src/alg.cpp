@@ -21,4 +21,5 @@ count++;
 } else if (count > 0) { tree.add(word); word = "";  count = 0;}
 }
 file.close();
+return tree;
 }
