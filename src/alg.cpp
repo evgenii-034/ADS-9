@@ -3,27 +3,45 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
-#include <string>
 #include  "bst.h"
 
+std::string low(std::string str) {
+std::string t = "";
+for (auto x = str.begin(); x != str.end(); ++x) {
+t += tolower(*x);
+}
+return t;
+}
 
-using namespace std;
-
-BST<string> makeTree(const char* filename) {
-  // поместите сюда свой код
-ifstream file(filename);
-BST<string> tree;
-string word = "";
-int count = 0;
-// читаем содержимое файла посимвольно
+BST<std::string> makeTree(const char* filename) {
+BST<std::string> newTree;
+std::ifstream file(filename);
+std::string word = "";
+if (file.is_open()) {
 while (!file.eof()) {
-char ch = file.get();
-if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
-if (ch >= 'A' && ch <= 'Z') ch += 32;
-word += ch;
-count++;
-} else if (count > 0) { tree.add(word); word = "";  count = 0;}
+word = "";
+while (true) {
+char letter = file.get();
+if ((letter >= 97 && letter <= 122) || (letter >= 65 && letter <= 90)) {
+word += tolower(letter);
+} else {
+break;
 }
-file.close();
-return tree;
 }
+while (!file.eof()) {
+char let = file.get();
+if ((let >= 'a' && let <= 'z') || (let >= 'A' && let <= 'Z')) {
+word += let;
+} else {
+word = low(word);
+newTree.add(word);
+word = "";
+}
+return newTree;
+} else {
+throw std::string("Did`t open!");
+}
+return newTree;
+}
+
+
