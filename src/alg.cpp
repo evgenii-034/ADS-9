@@ -17,7 +17,6 @@ BST<std::string> makeTree(const char* filename) {
 BST<std::string> newTree;
 std::ifstream file(filename);
 std::string word = "";
-if (file.is_open()) {
 while (!file.eof()) {
 char let = file.get();
 if ((let >= 'a' && let <= 'z') || (let >= 'A' && let <= 'Z')) {
@@ -27,9 +26,6 @@ word = low(word);
 newTree.add(word);
 word = "";
 }
-return newTree;
-} else {
-throw std::string("Did`t open!");
 }
 return newTree;
 }
