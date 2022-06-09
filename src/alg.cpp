@@ -9,7 +9,7 @@ BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
 std::ifstream file(filename);
 BST<std::string> tree;
-std::string word = "";
+std::word = "";
 int count = 0;
 // читаем содержимое файла посимвольно
 while (!file.eof()) {
